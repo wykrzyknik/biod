@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{block name=title}ZPAI{/block}</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     {/block}
     {block name=css}
     {if isset($cssFile)}
