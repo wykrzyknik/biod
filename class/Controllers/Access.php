@@ -11,7 +11,16 @@
 		// loguje do systemu
 		public function login(){
 			$model = $this->createModel('Access');
-
+			$time = $_SERVER['REQUEST_TIME'];
+			//d($time);
+			$timeout_duration = 60;
+			if (isset($_SESSION['LAST_ACTIVITY']) &&
+   		($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration) {
+    		$_SESSION["count"] = 0;
+			}
+			if(!isset($_SESSION["count"]))$_SESSION["count"] = 0;
+			//d($time - $_SESSION['LAST_ACTIVITY']);
+			if($_SESSION["count"] <3 ){
 			if($this->getPost('login')  !== null && $this->getPost('password') !== null ) {
 				if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				    function post_captcha($user_response) {
@@ -41,24 +50,49 @@
 
 				    if (!$res['success']) {
 				        // What happens when the CAPTCHA wasn't checked
-				        echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
+								\Tools\FlashMessage::addWarning('Wypełnij captche');
+								$this->redirect('formularz-logowania/');
+				        //echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
+
 				    } else {
-							if($model->login($this->getPost('login'),$this->getPost('password')))
-								$this->redirect('');
 
-				    }
+							//d($_SESSION["count"]);
+							//d($_SESSION['LAST_ACTIVITY']);
 
+							//if(($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration){
+							if(($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration && $model->login($this->getPost('login'),$this->getPost('password'))){
+							$_SESSION['LAST_ACTIVITY'] = $time;
+							$_SESSION["count"] = 0;
+							$this->redirect('');
+							}
+							else{
+								$zmienna=$time - $_SESSION['LAST_ACTIVITY'];
+								$_SESSION['LAST_ACTIVITY'] = $time;
+								$_SESSION["count"] = $_SESSION["count"] + 1;
+								//\Tools\FlashMessage::addWarning($_SESSION["count"]);
+								\Tools\FlashMessage::addWarning('Login lub hasło jest nie poprawne'+$_SESSION["count"]);
+								//\Tools\FlashMessage::addWarning($zmienna);
+								$this->redirect('formularz-logowania/');
+							}
+				    //}
 
-
-
+							//\Tools\FlashMessage::addWarning($_SESSION['LAST_ACTIVITY']);
+					}
+				}
 			}
+		}
 
-
-			\Tools\FlashMessage::addWarning('Login lub hasło jest nie poprawne');
+			//\Tools\FlashMessage::addWarning($_SESSION["count"]);
+			$_SESSION['LAST_ACTIVITY'] = $time;
+			//\Tools\FlashMessage::addWarning($_SESSION["count"]);
+			$_SESSION["count"] = $_SESSION["count"] + 1;
+			//\Tools\FlashMessage::addWarning(''+$time - $_SESSION['LAST_ACTIVITY']);
+			\Tools\FlashMessage::addWarning('Login lub hasło jest nie poprawne'+$_SESSION["count"]);
 			$this->redirect('formularz-logowania/');
 
+
 		}
-}
+
 
 		public function editPassword(){
 			$model = $this->createModel('Access');
