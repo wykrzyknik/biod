@@ -7,7 +7,7 @@
   <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
     <div class="thumbnail">
       <div class="caption">
-        <h4><span style="color:red">Id</span> {$data['id']} </br> <span style="color:red">login</span> {$data['login']} </br> </br> <span style="color:red">Hasło</span> {$data['password']} </br></br> <span style="color:red">Strona Internetowa</span> {$data['stronawww']} </br></h3>
+        <h4><span style="color:red">Id</span> {$data['id']} </br> </br> <span style="color:blue">Login</span> {$data['login']} </br> </br> <span style="color:blue">Hasło</span> {$data['password']} </br></br> <span style="color:red">Strona Internetowa</span> {$data['stronawww']} </br></h3>
         <p class="text-right">
           <a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}schowek/usun/{$data['id']}" type="button" class="btn btn-danger btn-sm delete-button"
               data-toggle="tooltip" data-placement="top" title="Usuń">

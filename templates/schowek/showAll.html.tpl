@@ -30,7 +30,7 @@
 {block name=thead}
 	<th>id</th>
 	<th>login</th>
-	<th>hasło</th>
+	<th >hasło</th>
 	<th>strona www</th>
 	<th class="hidden-print"></th>
 {/block}
@@ -44,7 +44,7 @@
 {block name=tbody}
 	<td>{$row['id']}</td>
   <td>{$row['login']}</td>
-	<td>{$row['password']}</td>
+	<td>{md5($row['password'])}</td>
   <td>{$row['stronawww']}</td>
   <td><span class="btn-group pull-right">
 		<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}schowek/{$row['id']}" type="button" class="btn btn-primary btn-sm"
