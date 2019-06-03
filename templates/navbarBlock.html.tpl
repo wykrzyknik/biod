@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}localhost">Strona Główna</a>
+      <a class="navbar-brand" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}strona/">Strona Główna</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       {block name=leftNavbar}
