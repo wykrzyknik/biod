@@ -83,6 +83,7 @@ VALUES ($login, $name, $surname:, $password)';*/
 			}
 			return $id;
 		}
+		
 		/*public function register($login, $password, $name, $surname) {
 
  		  	$data = array();
