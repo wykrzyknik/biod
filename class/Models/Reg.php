@@ -58,7 +58,7 @@ VALUES ($login, $name, $surname:, $password)';*/
 			$this->testConnection();
 			$this->testTable($this->table);
 			$this->isEmpty([$login, $name, $surname,$password]);
-
+			//d($this->isEmpty([$login, $name, $surname,$password]));
 			try	{
 				$query = 'INSERT INTO `'.$this->table.'` (
 									`login`,
@@ -83,5 +83,32 @@ VALUES ($login, $name, $surname:, $password)';*/
 			}
 			return $id;
 		}
+		/*public function register($login, $password, $name, $surname) {
+
+ 		  	$data = array();
+			$this->testConnection();
+			$table = $this->getTableName();
+			$this->testTable($table);
+			try	{
+					$query = 'INSERT INTO . $table(login, password, name, surname). VALUES($login,$password,$name,$surname)';
+					$stmt = $this->pdo->prepare($query);
+					$stmt->bindValue(':login', $login, \PDO::PARAM_STR);
+					$stmt->bindValue(':name', $name, \PDO::PARAM_STR);
+					$stmt->bindValue(':surname', $surname, \PDO::PARAM_STR);
+					$stmt->bindValue(':password', md5($password), \PDO::PARAM_STR);
+					if($stmt->execute())
+					$data = $stmt->fetchAll();
+					$stmt->closeCursor();
+			}
+			catch(\PDOException $e)	{
+					throw new \Exceptions\Query($e);
+			}
+			$user = $data;
+ 			if(isset($user[0])){
+ 	        	return true;
+ 			}
+			return false;
+		}*/
+
 
 	}

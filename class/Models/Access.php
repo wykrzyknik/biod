@@ -35,7 +35,7 @@
 			$user = $data;
  			if(isset($user[0])){
 				//zainicjalizowanie sesji
-				\Tools\Access::login($login, $user[0]['surname'].' '.$user[0]['name'] , $user[0]['ID']);
+				\Tools\Access::login($login, $user[0]['surname'].' '.$user[0]['name'] , $user[0]['id']);
  	        	return true;
  			}
 			return false;
@@ -45,6 +45,14 @@
 		 */
 		public function checkPassword($password, $password2) {
 			return $password === $password2;
+		}
+
+		public function znakihasla($password){
+			for($i=0;$i<strlen($password);$i++){
+					$tablica[$i]=substr($password,$i,1);
+
+			}
+			return $tablica;
 		}
 		/**
 		 * Wylogowanie użytkownika z systemu

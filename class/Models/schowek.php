@@ -53,8 +53,8 @@
 					$query .= ' WHERE `id`= :id';
 					$stmt = $this->pdo->prepare($query);
 					$stmt->bindValue(':login', $login, PDO::PARAM_STR);
-          $stmt->bindValue(':password', $login, PDO::PARAM_STR);
-          $stmt->bindValue(':$stronawww', $login, PDO::PARAM_STR);
+          $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+          $stmt->bindValue(':stronawww', $stronawww, PDO::PARAM_STR);
 					$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 					if($stmt->execute())
 					  $counter += $stmt->rowCount();
