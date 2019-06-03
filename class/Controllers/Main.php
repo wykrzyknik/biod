@@ -15,7 +15,7 @@
           $router = \Tools\Router::getRouter();
           $match = $router->match();
           // Kontroler / akcja / parametr_id
-          $controller = isset($match['target']['controller'])  ? $match['target']['controller'] : 'schowek';
+          $controller = isset($match['target']['controller'])  ? $match['target']['controller'] : 'strona';
           $action     = isset($match['target']['action'])      ? $match['target']['action']     : 'showAll';
           $id         = isset($match['params']['id'])          ? $match['params']['id']         : null;
           //d($router, $match, $controller, $action, $id);

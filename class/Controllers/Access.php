@@ -55,7 +55,6 @@
 				        //echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
 
 				    } else {
-
 							//d($_SESSION["count"]);
 							//d($_SESSION['LAST_ACTIVITY']);
 
@@ -63,7 +62,7 @@
 							if(($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration && $model->login($this->getPost('login'),$this->getPost('password'))){
 							$_SESSION['LAST_ACTIVITY'] = $time;
 							$_SESSION["count"] = 0;
-							$this->redirect('');
+							$this->redirect('schowek/');
 							}
 							else{
 								$zmienna=$time - $_SESSION['LAST_ACTIVITY'];
